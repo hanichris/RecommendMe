@@ -29,7 +29,6 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
 
     # Create the instance folder if it doesn't already exist
-    print(f"Instance folder path: {app.instance_path}")
     try:
         os.makedirs(app.instance_path, exist_ok=True)
     except OSError:
