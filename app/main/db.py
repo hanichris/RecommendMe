@@ -56,7 +56,7 @@ def init_db_command():
 
 def init_app(app):
     """Registers functions with the app instance.
-    
+
     `init_db_command` and `close_db` functions are registered
     with the app instance in this way due to use of factory
     function. Registration makes the functions available to
