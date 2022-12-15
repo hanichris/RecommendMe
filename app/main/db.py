@@ -6,6 +6,7 @@ which is closed after the fact. The connection is tied to
 the request being made.
 """
 import sqlite3
+
 import click
 from flask import current_app, g
 
