@@ -7,6 +7,7 @@ application and ensuring the instance folder exists.
 
 import os
 from flask import Flask
+from .main import db
 
 
 def create_app(test_config=None):
@@ -29,6 +30,7 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
 
     # Create the instance folder if it doesn't already exist
+    print(f'Database: {app.config["DATABASE"]}')
     try:
         os.makedirs(app.instance_path, exist_ok=True)
     except OSError:
@@ -37,5 +39,7 @@ def create_app(test_config=None):
     @app.route('/hello')
     def hello():
         return 'Hello, World!'
+
+    db.init_app(app)
 
     return app

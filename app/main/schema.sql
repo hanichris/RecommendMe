@@ -13,15 +13,15 @@ CREATE TABLE IF NOT EXISTS user (
     last_name TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
     birthday TEXT NOT NULL,
-    category CHAR(1) NOT NULL REFERENCES userType(u_type)
+    category CHAR(1) NOT NULL DEFAULT ('P') REFERENCES userType(u_type)
 );
 
 CREATE TABLE IF NOT EXISTS userType (
     u_type CHAR(1) PRIMARY KEY NOT NULL,
     seq INTEGER
 );
-INSERT INTO userType(type, seq) VALUES('P', 1);
-INSERT INTO userType(type, seq) VALUES('S', 2);
+-- INSERT INTO userType(u_type, seq) VALUES('P', 1);
+-- INSERT INTO userType(u_type, seq) VALUES('S', 2);
 
 -- Create the `post` table
 CREATE TABLE IF NOT EXISTS post (
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS student (
     field_of_study TEXT NOT NULL,
     degree TEXT NOT NULL,
     graduation INTEGER NOT NULL,
-    school TEXT NOT NULL
+    school TEXT NOT NULL,
     FOREIGN KEY (student_id) REFERENCES user (user_id)
 );
 
@@ -57,5 +57,5 @@ CREATE TABLE IF NOT EXISTS company (
     company_id TEXT PRIMARY KEY NOT NULL,
     company_name TEXT NOT NULL,
     employee_id TEXT NOT NULL,
-    FOREIGN KEY (employee_id) REFERENCES user (user_id),
+    FOREIGN KEY (employee_id) REFERENCES user (user_id)
 );
