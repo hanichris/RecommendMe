@@ -6,22 +6,23 @@ DROP TABLE IF EXISTS professional;
 DROP TABLE IF EXISTS company;
 DROP TABLE IF EXISTS industry;
 
+-- Implement `enum` datatype
+CREATE TABLE IF NOT EXISTS userType (
+    u_type TEXT PRIMARY KEY,
+    seq INTEGER
+);
+INSERT OR REPLACE INTO userType(u_type, seq) VALUES('P', 1);
+INSERT OR REPLACE INTO userType(u_type, seq) VALUES('S', 2);
+
 -- Create the `user` table
 CREATE TABLE IF NOT EXISTS user (
-    user_id TEXT PRIMARY KEY NOT NULL,
+    user_id TEXT PRIMARY KEY,
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
     birthday TEXT NOT NULL,
-    category CHAR(1) NOT NULL DEFAULT ('P') REFERENCES userType(u_type)
+    user_type TEXT NOT NULL REFERENCES userType(u_type)
 );
-
-CREATE TABLE IF NOT EXISTS userType (
-    u_type CHAR(1) PRIMARY KEY NOT NULL,
-    seq INTEGER
-);
--- INSERT INTO userType(u_type, seq) VALUES('P', 1);
--- INSERT INTO userType(u_type, seq) VALUES('S', 2);
 
 -- Create the `post` table
 CREATE TABLE IF NOT EXISTS post (
@@ -35,7 +36,7 @@ CREATE TABLE IF NOT EXISTS post (
 
 -- Create the `student` table
 CREATE TABLE IF NOT EXISTS student (
-    student_id TEXT PRIMARY KEY NOT NULL,
+    student_id TEXT PRIMARY KEY,
     field_of_study TEXT NOT NULL,
     degree TEXT NOT NULL,
     graduation INTEGER NOT NULL,
@@ -45,7 +46,7 @@ CREATE TABLE IF NOT EXISTS student (
 
 -- Create the `professional` table
 CREATE TABLE IF NOT EXISTS professional (
-    prof_id TEXT PRIMARY KEY NOT NULL,
+    prof_id TEXT PRIMARY KEY,
     job_title TEXT NOT NULL,
     comp_id TEXT NOT NULL,
     FOREIGN KEY (prof_id) REFERENCES user (user_id),
@@ -54,7 +55,7 @@ CREATE TABLE IF NOT EXISTS professional (
 
 -- Create the `company` table
 CREATE TABLE IF NOT EXISTS company (
-    company_id TEXT PRIMARY KEY NOT NULL,
+    company_id TEXT PRIMARY KEY,
     company_name TEXT NOT NULL,
     employee_id TEXT NOT NULL,
     FOREIGN KEY (employee_id) REFERENCES user (user_id)
