@@ -20,8 +20,7 @@ auth_views = Blueprint('auth', __name__, url_prefix='/auth')
 def register():
     """Return a form for users to fill out."""
     if request.method == 'POST':
-        first_name = request.form['first name']
-        last_name = request.form['last name']
+        username = request.form['username']
         email = request.form['email']
         passwd = request.form['password']
         birthday = request.form['birthday']
@@ -31,10 +30,8 @@ def register():
         error = None
         user_id = str(uuid.uuid4())
 
-        if not first_name:
-            error = 'First name is required'
-        elif not last_name:
-            error = 'Last name is required'
+        if not username:
+            error = 'Username is required'
         elif not email:
             error = 'Email is required.'
         elif not passwd:
@@ -49,22 +46,27 @@ def register():
         elif user_type == 'student':
             user_type = 'S'
 
-        if error is None:
-            try:
-                query = """
-                INSERT INTO user (user_id, first_name, last_name, email,
-                passwd, birthday, user_type) VALUES (?, ?, ?, ?, ?, ?, ?)
-                """
-                db.execute(query, (user_id, first_name, last_name, email,
-                           generate_password_hash(passwd), birthday,
-                           user_type)
-                           )
-                db.commit()
-            except db.IntegrityError:
-                error = f"User {email} is already registered."
-            else:
-                return redirect(url_for('auth.login'))
-        flash(error)
+        query = "SELECT * FROM user WHERE username = ?"
+        flag = db.execute(query, (username, )).fetchone()
+        if flag:
+            error = f"{username} is taken."
+        else:
+            if error is None:
+                try:
+                    query = """
+                    INSERT INTO user (user_id, username, email, passwd,
+                    birthday, user_type) VALUES (?, ?, ?, ?, ?, ?)
+                    """
+                    db.execute(query, (user_id, username, email,
+                               generate_password_hash(passwd), birthday,
+                               user_type)
+                               )
+                    db.commit()
+                except db.IntegrityError:
+                    error = f"User {email} is already registered."
+                else:
+                    return redirect(url_for('auth.login'))
+            flash(error)
     return render_template('auth/register.html')
 
 
