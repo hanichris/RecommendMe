@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS user (
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
+    passwd TEXT NOT NULL,
     birthday TEXT NOT NULL,
     user_type TEXT NOT NULL REFERENCES userType(u_type)
 );

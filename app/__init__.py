@@ -7,7 +7,8 @@ application and ensuring the instance folder exists.
 
 import os
 from flask import Flask
-from .main import db
+from main import db
+from main.views import auth
 
 
 def create_app(test_config=None):
@@ -41,5 +42,6 @@ def create_app(test_config=None):
         return 'Hello, World!'
 
     db.init_app(app)
+    app.register_blueprint(auth.auth_views)
 
     return app
