@@ -17,8 +17,7 @@ INSERT OR REPLACE INTO userType(u_type, seq) VALUES('S', 2);
 -- Create the `user` table
 CREATE TABLE IF NOT EXISTS user (
     user_id TEXT PRIMARY KEY,
-    first_name TEXT NOT NULL,
-    last_name TEXT NOT NULL,
+    username TEXT UNIQUE NOT NULL,
     email TEXT UNIQUE NOT NULL,
     passwd TEXT NOT NULL,
     birthday TEXT NOT NULL,
