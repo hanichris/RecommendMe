@@ -15,8 +15,8 @@ from ..db import get_db
 auth_views = Blueprint('auth', __name__, url_prefix='/auth')
 
 
-@auth_views.route('/register', methods=('GET', 'POST'),
-                  strict_flashes=False)
+@auth_views.route('/register', methods=['GET', 'POST'],
+                  strict_slashes=False)
 def register():
     """Return a form for users to fill out."""
     if request.method == 'POST':
@@ -70,7 +70,7 @@ def register():
     return render_template('auth/register.html')
 
 
-@auth_views.route('/login', methods=('GET, POST'), strict_slashes=False)
+@auth_views.route('/login', methods=['GET', 'POST'], strict_slashes=False)
 def login():
     """Facilitate the logining in of users."""
     if request.method == 'POST':
