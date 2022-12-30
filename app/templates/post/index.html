@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="layout">
+        <div class="layout_left-sidebar">
+            <div class="sidebar-menu">
+                <div class="sidebar-menu_item sidebar-menu_item--active">
+                    <img src="{{ url_for('static'), filename='svg/home.svg' }}" alt="" class="sidebar-menu_item-icon" />
+                    Home
+                </div>
+    
+                <div class="sidebar-menu_item">
+                    <img src="{{ url_for('static'), filename='svg/explore.svg' }}" alt="" class="sidebar-menu_item-icon" />
+                    Explore
+                </div>
+    
+                <div class="sidebar-menu_item">
+                    <img src="{{ url_for('static'), filename='svg/explore.svg' }}" alt="" class="sidebar-menu_item-icon" />
+                    Profile
+                </div>
+                
+                <div class="sidebar-menu_item">
+                    <img src="{{ url_for('static'), filename='svg/explore.svg' }}" alt="" class="sidebar-menu_item-icon" />
+                    Notifications
+                </div>
+                
+                <div class="sidebar-menu_item">
+                    <img src="{{ url_for('static'), filename='svg/explore.svg' }}" alt="" class="sidebar-menu_item-icon" />
+                    Messages
+                </div>
+                
+                <div class="sidebar-menu_item">
+                    <img src="{{ url_for('static'), filename='svg/explore.svg' }}" alt="" class="sidebar-menu_item-icon" />
+                    Bookmark
+                </div>
+            </div>
+        </div>
+        <!-- Feed starts here -->
+        <div class="layout_feed">
+            <div class="feed_header">
+                <h2>Home</h2>
+            </div>
+    
+            <!-- Post box starts here -->
+            <div class="post_box">
+                <form action="" method="post">
+                    <div class="post_box_input">
+                        <input type="text" name="" id="" placeholder="What's on your mind?" maxlength="280">
+                    </div>
+                    <button type="submit" class="post_box_button">Post</button>
+                </form>
+            </div>
+            <!-- Post box ends here -->
+    
+            <!-- lists of previous posts already made. -->
+        </div>
+    </div>
+
+
+{% endblock %}
