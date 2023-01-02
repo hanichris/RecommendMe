@@ -12,7 +12,7 @@
     <title>{% block title %}{% endblock %} - app</title>
 </head>
 <body>
-    <nav>
+    <!-- <nav>
         <ul>
             {% if g.user %}
             <li><span>{{ g.user['username'] }}</span></li>
@@ -22,7 +22,7 @@
             <li><a href="{{ url_for('auth.login') }}">Log in</a></li>
             {% endif %}
         </ul>
-    </nav>
+    </nav> -->
     <!-- Display the error messages that were set in the view functions -->
     {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>
