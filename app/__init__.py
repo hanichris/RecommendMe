@@ -9,6 +9,7 @@ import os
 from flask import Flask
 from .main import db
 from .main.views import auth
+from .main.views import post
 
 
 def create_app(test_config=None):
@@ -43,5 +44,7 @@ def create_app(test_config=None):
 
     db.init_app(app)
     app.register_blueprint(auth.auth_views)
+    app.register_blueprint(post.post_views)
+    app.add_url_rule('/', endpoint='index')
 
     return app
