@@ -45,6 +45,7 @@ def index():
                 print(f'Error {err=} of type {type(err)=}')
             else:
                 redirect(url_for('post.index'))
+        return render_template('post/index.html')
 
     elif request.method == 'GET':
         db = get_db()
