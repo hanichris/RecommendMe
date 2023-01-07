@@ -14,6 +14,7 @@ post_views = Blueprint('post', __name__)
 
 
 @post_views.route('/', methods=['GET', 'POST'])
+@login_required
 def index():
     """View for the homepage of the web app."""
     if request.method == 'POST':
