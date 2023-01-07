@@ -12,21 +12,72 @@
     <title>{% block title %}{% endblock %} - app</title>
 </head>
 <body>
-    <!-- <nav>
-        <ul>
-            {% if g.user %}
-            <li><span>{{ g.user['username'] }}</span></li>
-            <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
-            {% else %}
-            <li><a href="{{ url_for('auth.register') }}">Register</a></li>
-            <li><a href="{{ url_for('auth.login') }}">Log in</a></li>
-            {% endif %}
-        </ul>
-    </nav> -->
+    <div class="sidebar-menu">
+        {% if not g.user %}
+        <div class="sidebar-menu_item">
+            <img src="{{ url_for('static', filename='svg/explore.svg') }}" alt="" class="sidebar-menu_item-icon">
+            Explore
+        </div>
+
+        <div class="sidebar-menu_item">
+            <img src="{{ url_for('static', filename='svg/settings.svg') }}" alt="" class="sidebar-menu_item-icon">
+            Settings
+        </div>
+            
+        {% else %}
+        <div class="sidebar-menu_item sidebar-menu_item--active">
+            <img src="{{ url_for('static', filename='svg/home.svg') }}" alt="" class="sidebar-menu_item-icon" />
+            Home
+        </div>
+
+        <div class="sidebar-menu_item">
+            <img src="{{ url_for('static', filename='svg/explore.svg') }}" alt="" class="sidebar-menu_item-icon" />
+            Explore
+        </div>
+
+        <div class="sidebar-menu_item">
+            <img src="{{ url_for('static', filename='svg/ring.svg') }}" alt="" class="sidebar-menu_item-icon" />
+            Notifications
+        </div>
+        
+        <div class="sidebar-menu_item">
+            <img src="{{ url_for('static', filename='svg/envelope.svg') }}" alt="" class="sidebar-menu_item-icon" />
+            Messages
+        </div>
+        
+        <div class="sidebar-menu_item">
+            <img src="{{ url_for('static', filename='svg/bookmark.svg') }}" alt="" class="sidebar-menu_item-icon" />
+            Bookmarks
+        </div>
+        
+        <div class="sidebar-menu_item">
+            <img src="{{ url_for('static', filename='svg/profile.svg') }}" alt="" class="sidebar-menu_item-icon" />
+            Profile
+        </div>
+
+        <a href="{{ url_for('auth.logout') }}">Log out</a>
+        {% endif %}
+    </div>
     <!-- Display the error messages that were set in the view functions -->
     {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>
     {% endfor %}
     {% block content %}{% endblock %}
+
+    {% if not g.user %}
+        <nav class="navbar fixed-bottom nav-tertiary">
+            <div class="container-fluid" style="justify-content: space-around;">
+                <a href="#" class="navbar-brand" style="font-size: 20px; font-weight: 700; color: white;">RecommendMe</a>
+                <div>
+                    {% block login_content %}{% endblock %}
+                    {% block register_content %}{% endblock %}
+                    <!-- <a class="btn btn-light" href="{{ url_for('auth.register') }}">Sign up</a> -->
+                    <!-- <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#registerModal">
+                        Sign up
+                    </button> -->
+                </div>
+            </div>
+        </nav>
+    {% endif %}
 </body>
 </html>
