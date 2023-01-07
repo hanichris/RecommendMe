@@ -121,3 +121,25 @@ body {
     margin-top: 10px;
     margin-left: auto;
 }
+
+/* Register and Login form buttons */
+.login-btn, .register-btn{
+    background-color: var(--btn-color);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: 800;
+    text-align: center;
+    display: block;
+    width: 466px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Nav bar styling */
+.nav-tertiary {
+    background-color: var(--accent-color);
+    opacity: 1;
+}
