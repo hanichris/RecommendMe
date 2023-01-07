@@ -1,27 +1,31 @@
-{% extends "base.html" %}
+{% extends "post/index.html" %}
 {% block title %}Login{% endblock %}
 
 {% block content %}
 <div class="login_container">
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
-        Launch login modal
-    </button>
+    <!-- <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
+        Login
+    </button> -->
     <!-- Modal -->
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <h2 class="modal-title" id="staticBackdropLabel">Join RecommedMe today</h2>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background-color: #f7f8fa;">
+                <div class="modal-header" style="border-bottom: 0;">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin: 0;"></button>
                 </div>
+                <h2 class="modal-title" id="staticBackdropLabel" style="text-align: center;">Join RecommedMe today</h2>
                 <div class="modal-body">
-                    <form action="" method="post">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" required>
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" required>
-                        <input type="submit" value="Log in">
+                    <form action="{{ url_for('auth.login') }}" method="post">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                            <label for="email" class="form-label">Email</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Password"required>
+                            <label for="password" class="form-label">Password</label>
+                        </div>
+                        <input type="submit" class="login-btn" value="Log in">
                     </form>
                 </div>
                 <div class="modal-footer"></div>
@@ -29,4 +33,11 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block login_content %}
+<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#loginModal">
+    Log in
+</button>
+<a class="btn btn-light" href="{{ url_for('auth.register') }}">Sign up</a>
 {% endblock %}
