@@ -4,33 +4,47 @@
 {% block content %}
 <div class="register_container">
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#registerModal">
-        Launch register modal
-    </button>
+    <!-- <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#registerModal">
+        Sign up
+    </button> -->
     <!-- Modal -->
+    
     <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <h2 class="modal-title" id="staticBackdropLabel">Sign in to RecommedMe</h2>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background-color: #f7f8fa;">
+                <div class="modal-header" style="border-bottom: 0;">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin: 0;"></button>
                 </div>
+                <h2 class="modal-title" id="staticBackdropLabel" style="text-align: center;">Sign in to RecommedMe</h2>
                 <div class="modal-body">
-                    <form action="" method="post">
-                        <label for="username">Username</label>
-                        <input type="text" name="username" id="username" required>
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" required>
-                        <label for="birthday">Birthday</label>
-                        <input type="date" name="birthday" id="birthday">
-                        <label for="category">Category</label>
-                        <select name="category" id="category">
-                            <option value="professional">Professional</option>
-                            <option value="student">Student</option>
-                        </select>
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" required>
-                        <input type="submit" value="Register">
+                    <form action="{{ url_for('auth.register') }}" method="post">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
+                            <label for="username" class="form-label">Username</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                            <label for="email" class="form-label">Email</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Password"required>
+                            <div class="form-text">
+                                Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+                            </div>
+                            <label for="password" class="form-label">Password</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="date" class="form-control" name="birthday" id="birthday">
+                            <label for="birthday" class="form-label">Birthday</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select class="form-select" name="category" id="category">
+                                <option value="professional">Professional</option>
+                                <option value="student">Student</option>
+                            </select>
+                            <label for="category" class="form-label">Category</label>
+                        </div>
+                        <input type="submit" class="register-btn" value="Register">
                     </form>
                 </div>
                 <div class="modal-footer"></div>
@@ -38,4 +52,11 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block register_content %}
+<a class="btn btn-dark" href="{{ url_for('auth.login') }}">Log in</a>
+<button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#registerModal">
+    Sign up
+</button>
 {% endblock %}
