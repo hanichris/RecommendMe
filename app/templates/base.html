@@ -26,8 +26,10 @@
             
         {% else %}
         <div class="sidebar-menu_item sidebar-menu_item--active">
-            <img src="{{ url_for('static', filename='svg/home.svg') }}" alt="" class="sidebar-menu_item-icon" />
-            Home
+            <a href="{{ url_for('post.index') }}" style="color: inherit; text-decoration: none;">
+                <img src="{{ url_for('static', filename='svg/home.svg') }}" alt="" class="sidebar-menu_item-icon" />
+                Home
+            </a>
         </div>
 
         <div class="sidebar-menu_item">
@@ -55,7 +57,9 @@
             Profile
         </div>
 
-        <a href="{{ url_for('auth.logout') }}">Log out</a>
+        <div class="sidebar-menu_item">
+            <a href="{{ url_for('auth.logout') }}" class="logout-btn">Log out</a>
+        </div>
         {% endif %}
     </div>
     <!-- Display the error messages that were set in the view functions -->
