@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """View to support creation, updation, deletion of posts."""
-from datetime import datetime
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
@@ -29,17 +28,15 @@ def index():
             flash(error)
         else:
             post_id = str(uuid4())
-            created_at = datetime.now()
+            # created_at = datetime.now()
             query = """
-            INSERT INTO post (post_id, author_id, created_at, body)
-            VALUES (?, ?, ?, ?)
+            INSERT INTO post (post_id, author_id, body)
+            VALUES (?, ?, ?)
             """
 
             db = get_db()
             try:
-                db.execute(query, (post_id, g.user['user_id'],
-                           created_at.isoformat(timespec='milliseconds'),
-                           status))
+                db.execute(query, (post_id, g.user['user_id'], status))
 
                 db.commit()
             except db.IntegrityError as err:
@@ -57,4 +54,5 @@ def index():
         """
 
         posts = db.execute(query).fetchall()
+        print(f'posts pulled from database:\n{posts}')
         return render_template('post/index.html', posts=posts)
