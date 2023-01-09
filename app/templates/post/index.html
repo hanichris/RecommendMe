@@ -2,38 +2,6 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-
-    <div class="sidebar-menu">
-        <div class="sidebar-menu_item sidebar-menu_item--active">
-            <img src="{{ url_for('static', filename='svg/home.svg') }}" alt="" class="sidebar-menu_item-icon" />
-            Home
-        </div>
-
-        <div class="sidebar-menu_item">
-            <img src="{{ url_for('static', filename='svg/explore.svg') }}" alt="" class="sidebar-menu_item-icon" />
-            Explore
-        </div>
-
-        <div class="sidebar-menu_item">
-            <img src="{{ url_for('static', filename='svg/ring.svg') }}" alt="" class="sidebar-menu_item-icon" />
-            Notifications
-        </div>
-        
-        <div class="sidebar-menu_item">
-            <img src="{{ url_for('static', filename='svg/envelope.svg') }}" alt="" class="sidebar-menu_item-icon" />
-            Messages
-        </div>
-        
-        <div class="sidebar-menu_item">
-            <img src="{{ url_for('static', filename='svg/bookmark.svg') }}" alt="" class="sidebar-menu_item-icon" />
-            Bookmarks
-        </div>
-        
-        <div class="sidebar-menu_item">
-            <img src="{{ url_for('static', filename='svg/profile.svg') }}" alt="" class="sidebar-menu_item-icon" />
-            Profile
-        </div>
-    </div>
     <!-- Feed starts here -->
     <div class="layout_feed">
         <div class="feed_header">
@@ -57,14 +25,14 @@
             <div class="post">
                 <div class="post_header">
                     <div class="post_username">
-                        post['username']
+                        {{ post['username'] }}
                     </div>
                     <div class="post_publish_time">
-                        post['created_at']
+                        {{ post['created_at'] }}
                     </div>
                 </div>
                 <div class="post_content">
-                    post['body']
+                    {{ post['body'] }}
                 </div>
             </div>
             {% if not loop.last %}
