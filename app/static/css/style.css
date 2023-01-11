@@ -75,6 +75,7 @@ body {
     z-index: 100;
     border: 1px solid #e5e5e7;
     padding: 10px 20px;
+    background-color: var(--background-color);
 }
 
 .feed_header h2 {
@@ -120,6 +121,38 @@ body {
     height: 40px;
     margin-top: 10px;
     margin-left: auto;
+}
+
+/* Post content */
+.post {
+    display: flex;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+}
+
+.post:hover {
+    background: rgba(0, 0, 0, 0.03);
+    cursor: pointer;
+}
+
+.post_main {
+    flex: 1;
+}
+
+.post_header {
+    display: flex;
+}
+
+.post_author {
+    font-size: 15px;
+    font-weight: 700;
+    margin-right: 5px;
+    color: #14171a;
+}
+
+.post_publish_time {
+    margin-left: 5px;
+    color: #657786;;
 }
 
 /* Register and Login form buttons */
