@@ -23,20 +23,22 @@
         <!-- lists of previous posts already made. -->
         {% for post in posts %}
             <div class="post">
-                <div class="post_header">
-                    <div class="post_username">
-                        {{ post['username'] }}
+                <div class="post_main">
+                    <div class="post_header">
+                        <div class="post_author">
+                            {{ post['username'] | title }}
+                        </div>
+                        <div class="post_publish_time">
+                            {{ post['created_at'] }}
+                        </div>
                     </div>
-                    <div class="post_publish_time">
-                        {{ post['created_at'] }}
+                    <div class="post_content">
+                        {{ post['body'] | wordwrap(10)}}
                     </div>
-                </div>
-                <div class="post_content">
-                    {{ post['body'] }}
                 </div>
             </div>
             {% if not loop.last %}
-                <hr>
+                <hr style="opacity: 1; color: #e5e5e7;">
             {% endif %}
         {% endfor %}
     </div>
